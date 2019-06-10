@@ -4,6 +4,7 @@ import (
 	"context"
 	"crypto/ecdsa"
 	"log"
+	"os"
 
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
@@ -12,7 +13,7 @@ import (
 )
 
 func getAccountDetailsRinkeby(client *ethclient.Client) (privateKey *ecdsa.PrivateKey, publicKeyECDSA *ecdsa.PublicKey, fromAddress common.Address, nonce uint64, err error) {
-	privateKey, err = crypto.HexToECDSA("e452c91efead165ec9ba005b5f437be6101eb10a7c650a3d0cc5da80d9ed5d80")
+	privateKey, err = crypto.HexToECDSA(os.Getenv("PRIVATE_KEY"))
 	if err != nil {
 		log.Fatal(err)
 		return
